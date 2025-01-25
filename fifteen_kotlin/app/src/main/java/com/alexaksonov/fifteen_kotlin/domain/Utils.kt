@@ -6,4 +6,16 @@ class Utils {
 
     fun getIndex(row: Int, col: Int) = row * DIM + col
 
+    fun getTextFromIndex(index: Int): String {
+
+        val text = if (index == GameLogic().emptyIndex) {
+            ""
+        } else {
+            index.toString()
+        }
+
+        return text
+
+    }
+
 }

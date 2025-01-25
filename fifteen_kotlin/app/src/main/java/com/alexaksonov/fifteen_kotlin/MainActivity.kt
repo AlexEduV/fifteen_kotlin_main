@@ -58,15 +58,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                 repeat(4) { rowIndex ->
 
                     val textInt = tiles[utils.getIndex(col = colIndex, row = rowIndex)]
-
-                    if (textInt == emptyIndex) {
-                        text = ""
-                    }
-                    else {
-                        text = textInt.toString()
-                    }
-
-                    Tile(text)
+                    Tile(utils.getTextFromIndex(textInt))
                 }
             }
         }
