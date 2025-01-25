@@ -20,10 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FifteenKotlinTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MainScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +28,19 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MainScreen(modifier: Modifier = Modifier) {
+
+}
+
+@Composable
+fun Tile(tileLabel: String, modifier: Modifier = Modifier) {
+    Text(tileLabel)
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun TilePreview() {
     FifteenKotlinTheme {
-        Greeting("Android")
+        Tile("12")
     }
 }
