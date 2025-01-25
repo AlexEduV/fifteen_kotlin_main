@@ -9,9 +9,18 @@ class GameLogic {
     companion object {
         const val GRID_SIZE = 4
         const val EMPTY_INDEX = 16
-        private val initTiles = (1..16).toList()
 
-        var gameTiles = mutableStateOf(generateTiles())
+        private val initTiles = (1..16).toList()
+        private val testInitTiles = buildList {
+            addAll(1..14)
+            add(16)
+            add(15)
+        }
+
+
+        //var gameTiles = mutableStateOf(generateTiles())
+        var gameTiles = mutableStateOf(testInitTiles)
+
         var movesCount = mutableIntStateOf(0)
         var isWon = mutableStateOf(false)
 
@@ -46,6 +55,9 @@ class GameLogic {
 
         //on click, check the neighbouring tiles for empty, and swap current tile with empty
         fun onTileClick(clickedIndex: Int): Boolean {
+
+            if (isWon.value) return false
+
             val tiles = gameTiles.value.toMutableList()
             val blankIndex = tiles.indexOf(EMPTY_INDEX) // Find the blank tile (16)
             if (isNeighbor(clickedIndex, blankIndex)) {
@@ -85,7 +97,7 @@ class GameLogic {
         }
 
         // check the game state
-        fun isGameComplete(tiles: MutableList<Int>): Boolean {
+        private fun isGameComplete(tiles: MutableList<Int>): Boolean {
             val correctOrder = initTiles
             return tiles == correctOrder
         }
