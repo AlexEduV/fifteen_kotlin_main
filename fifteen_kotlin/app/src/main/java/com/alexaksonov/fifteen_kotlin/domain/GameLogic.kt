@@ -2,7 +2,7 @@ package com.alexaksonov.fifteen_kotlin.domain
 
 class GameLogic {
 
-    private val emptyIndex = 16
+    val emptyIndex = 16
 
     private val initTiles = (1..16).toMutableList()
     val gameTiles = generateTiles(initTiles)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,8 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.alexaksonov.fifteen_kotlin.domain.GameLogic
+import com.alexaksonov.fifteen_kotlin.domain.Utils
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,13 +46,27 @@ fun MainScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun TileGrid(modifier: Modifier = Modifier) {
+fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
+
+    val utils = Utils()
+    val emptyIndex = GameLogic().emptyIndex
+    var text = ""
 
     Column {
-        repeat(4) {
+        repeat(4) { colIndex ->
             Row {
-                repeat(4) {
-                    Tile("12")
+                repeat(4) { rowIndex ->
+
+                    val textInt = tiles[utils.getIndex(col = colIndex, row = rowIndex)]
+
+                    if (textInt == emptyIndex) {
+                        text = ""
+                    }
+                    else {
+                        text = textInt.toString()
+                    }
+
+                    Tile(text)
                 }
             }
         }
@@ -56,11 +74,11 @@ fun TileGrid(modifier: Modifier = Modifier) {
 
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun GridPreview() {
     FifteenKotlinTheme {
-        TileGrid()
+        TileGrid(GameLogic().gameTiles)
     }
 }
 
@@ -70,7 +88,9 @@ fun Tile(tileLabel: String, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .clip(RoundedCornerShape(16.dp))
+            .padding(4.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color.White)
             .width(50.dp)
             .height(50.dp),
     ) {
@@ -78,7 +98,7 @@ fun Tile(tileLabel: String, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun TilePreview() {
     FifteenKotlinTheme {
