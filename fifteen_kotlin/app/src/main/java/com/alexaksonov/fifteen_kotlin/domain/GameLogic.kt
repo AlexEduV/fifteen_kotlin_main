@@ -5,7 +5,7 @@ class GameLogic {
     val emptyIndex = 16
 
     private val initTiles = (1..16).toMutableList()
-    val gameTiles = generateTiles(initTiles)
+    var gameTiles = generateTiles(initTiles)
 
     //generate a new sequence
     private fun generateTiles(initTiles: MutableList<Int>): MutableList<Int> {
@@ -37,7 +37,7 @@ class GameLogic {
     }
 
     //on click, check the neighbouring tiles for empty, and swap current tile with empty
-    fun onClick(tiles: MutableList<Int>, clickedIndex: Int): Boolean {
+    fun onTileClick(tiles: MutableList<Int>, clickedIndex: Int): Boolean {
         val blankIndex = tiles.indexOf(emptyIndex) // Find the blank tile (16)
         if (isNeighbor(clickedIndex, blankIndex)) {
             // Swap the clicked tile with the blank tile
@@ -46,6 +46,10 @@ class GameLogic {
             return true // Swap was successful
         }
         return false // No swap, as the clicked tile isn't a neighbor
+    }
+
+    fun onGridReset() {
+        gameTiles = generateTiles(initTiles)
     }
 
     // Check if two tiles are neighbors in the 4x4 grid

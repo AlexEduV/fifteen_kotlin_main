@@ -49,8 +49,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
 fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 
     val utils = Utils()
-    val emptyIndex = GameLogic().emptyIndex
-    var text = ""
 
     Column {
         repeat(4) { colIndex ->
