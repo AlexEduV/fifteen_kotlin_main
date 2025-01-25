@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,21 +37,31 @@ fun Tile(
     onClick: () -> Boolean,
 ) {
 
-    Surface(
+    Card(
+        colors = CardDefaults.cardColors(containerColor = backgroundColor),
         modifier = modifier
             .padding(4.dp)
-            .clip(RoundedCornerShape(12.dp))
             .border(1.dp, Color.White, RoundedCornerShape(12.dp))
             .size(80.dp)
-            .shadow(2.dp, shape = RoundedCornerShape(12.dp), ambientColor = backgroundColor.copy(alpha = 0.5f), spotColor = backgroundColor.copy(alpha = 0.5f)), // Adding custom shadow
-        shadowElevation = 12.dp,
-        color = backgroundColor,
-        onClick = { onClick() }
+            .shadow(elevation = 72.dp, clip = false)
+            .graphicsLayer(
+                clip = false,
+                shape = RoundedCornerShape(12.dp),
+                shadowElevation = 24f, // Larger shadow
+                ambientShadowColor = Color.Black.copy(alpha = 0.5f), // Customize ambient shadow
+                spotShadowColor = Color.Black.copy(alpha = 0.5f) // Customize spotlight shadow
+            )
+            .clickable { onClick() },
+        elevation = CardDefaults.cardElevation(24.dp),
+        shape = RoundedCornerShape(12.dp)
+
     ) {
+
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
         ) {
+
             Text(
                 tileLabel,
                 style = TextStyle(
@@ -61,7 +75,7 @@ fun Tile(
     }
 }
 
-@Preview(showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun TilePreview() {
     FifteenKotlinTheme {

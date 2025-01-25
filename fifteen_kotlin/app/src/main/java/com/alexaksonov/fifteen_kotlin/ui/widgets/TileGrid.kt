@@ -33,7 +33,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                             backgroundColor = Utils.getTileColor(textInt),
                             onClick = {
                                 GameLogic.onTileClick(index)
-                            }
+                            },
                         )
                     }
                 }
@@ -43,7 +43,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 
 }
 
-@Preview(showBackground = false)
+@Preview(showBackground = true)
 @Composable
 fun GridPreview() {
     FifteenKotlinTheme {
