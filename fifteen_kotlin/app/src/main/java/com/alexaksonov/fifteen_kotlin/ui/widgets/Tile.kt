@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.alexaksonov.fifteen_kotlin.ui.theme.AppColors
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
 
 @Composable
@@ -23,7 +24,7 @@ fun Tile(tileLabel: String, modifier: Modifier = Modifier) {
         modifier = Modifier
             .padding(4.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
+            .background(AppColors.Silver)
             .width(50.dp)
             .height(50.dp),
     ) {
