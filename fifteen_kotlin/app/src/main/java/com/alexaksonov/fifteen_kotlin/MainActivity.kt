@@ -14,8 +14,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -69,8 +76,35 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.height(32.dp))
 
-        Row {
-            
+        Row(verticalAlignment = Alignment.CenterVertically) {
+
+            IconButton(
+                onClick = { },
+                modifier = Modifier
+                    .size(70.dp)
+                    .background(AppColors.Silver, RoundedCornerShape(12.dp)) // Silver background with circular shape
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Refresh,
+                    contentDescription = "Refresh Icon",
+                    tint = Color.White // White icon color
+                )
+            }
+
+            Spacer(Modifier.width(48.dp))
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceBetween) {
+                Text(
+                    "Moves",
+                    style = TextStyle(fontWeight = FontWeight.W500, fontSize = 16.sp),
+                )
+
+                Text(
+                    "0",
+                    style = TextStyle(fontWeight = FontWeight.W500, fontSize = 32.sp),
+                )
+            }
+
         }
 
 
