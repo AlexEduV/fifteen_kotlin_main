@@ -69,7 +69,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.height(32.dp))
 
-        TileGrid(GameLogic.gameTiles)
+        TileGrid(GameLogic.gameTiles.value)
 
         Spacer(Modifier.height(32.dp))
 
@@ -97,7 +97,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    GameLogic.movesCount.toString(),
+                    GameLogic.movesCount.intValue.toString(),
                     style = TextStyle(fontWeight = FontWeight.W500, fontSize = 32.sp),
                 )
             }
@@ -137,7 +137,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                             isEmpty = textInt == GameLogic.EMPTY_INDEX,
                             onClick = {
                                 GameLogic.onTileClick(
-                                    GameLogic.gameTiles,
+                                    GameLogic.gameTiles.value.toMutableList(),
                                     Utils.getIndex(colIndex, rowIndex)
                                 )
                             }
@@ -154,6 +154,6 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 @Composable
 fun GridPreview() {
     FifteenKotlinTheme {
-        TileGrid(GameLogic.gameTiles)
+        TileGrid(GameLogic.gameTiles.value)
     }
 }

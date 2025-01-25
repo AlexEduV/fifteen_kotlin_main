@@ -1,23 +1,26 @@
 package com.alexaksonov.fifteen_kotlin.domain
 
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+
 class GameLogic {
 
     companion object {
         const val GRID_SIZE = 4
         const val EMPTY_INDEX = 16
-        private val initTiles = (1..16).toMutableList()
+        private val initTiles = (1..16).toList()
 
-        var gameTiles = generateTiles(initTiles)
-        var movesCount = 0
+        var gameTiles = mutableStateOf(generateTiles())
+        var movesCount = mutableIntStateOf(0)
 
         //generate a new sequence
-        private fun generateTiles(initTiles: MutableList<Int>): MutableList<Int> {
-            val tiles = initTiles
+        private fun generateTiles(): List<Int> {
+            val tiles = initTiles.toMutableList()
             do {
                 tiles.shuffle()
             } while (!isSolvable(tiles))
 
-            return tiles
+            return tiles.toList()
         }
 
         // Check if the arrangement is solvable
@@ -48,7 +51,8 @@ class GameLogic {
                 tiles[clickedIndex] = EMPTY_INDEX
 
                 //update moves counter
-                movesCount++
+                movesCount.intValue++
+                gameTiles.value = tiles
 
                 return true // Swap was successful
             }
@@ -56,7 +60,8 @@ class GameLogic {
         }
 
         fun onGridReset() {
-            gameTiles = generateTiles(initTiles)
+            gameTiles.value = generateTiles()
+            movesCount.intValue = 0
         }
 
         // Check if two tiles are neighbors in the 4x4 grid
