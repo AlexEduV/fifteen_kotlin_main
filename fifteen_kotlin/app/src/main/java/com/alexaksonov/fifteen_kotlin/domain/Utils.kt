@@ -7,7 +7,7 @@ class Utils {
 
     companion object {
 
-        fun getIndex(row: Int, col: Int) = row * GameLogic.GRID_SIZE + col
+        fun getIndex(row: Int, col: Int) = col * GameLogic.GRID_SIZE + row
 
         fun getTextFromIndex(index: Int): String {
 
