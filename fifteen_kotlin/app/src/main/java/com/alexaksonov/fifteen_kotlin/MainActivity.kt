@@ -5,13 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -26,18 +23,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alexaksonov.fifteen_kotlin.domain.GameLogic
-import com.alexaksonov.fifteen_kotlin.domain.Utils
 import com.alexaksonov.fifteen_kotlin.ui.theme.AppColors
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
 import com.alexaksonov.fifteen_kotlin.ui.widgets.IndicatorColumn
-import com.alexaksonov.fifteen_kotlin.ui.widgets.Tile
 import com.alexaksonov.fifteen_kotlin.ui.widgets.TileGrid
 
 class MainActivity : ComponentActivity() {
@@ -96,7 +89,7 @@ fun MainScreenPreview() {
 @Composable
 fun UtilityRow(modifier: Modifier = Modifier) {
 
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
 
         IconButton(
             onClick = { GameLogic.onGridReset() },
