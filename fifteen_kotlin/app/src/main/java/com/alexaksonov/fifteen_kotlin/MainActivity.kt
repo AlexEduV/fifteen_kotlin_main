@@ -72,7 +72,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.height(32.dp))
 
-        TileGrid(GameLogic().gameTiles)
+        TileGrid(GameLogic.gameTiles)
 
         Spacer(Modifier.height(32.dp))
 
@@ -87,7 +87,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 Icon(
                     imageVector = Icons.Filled.Refresh,
                     contentDescription = "Refresh Icon",
-                    tint = Color.White // White icon color
+                    tint = Color.White
                 )
             }
 
@@ -137,7 +137,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                     repeat(4) { rowIndex ->
 
                         val textInt = tiles[utils.getIndex(col = colIndex, row = rowIndex)]
-                        Tile(utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic().emptyIndex)
+                        Tile(utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic.EMPTY_INDEX)
                     }
                 }
             }
@@ -150,6 +150,6 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 @Composable
 fun GridPreview() {
     FifteenKotlinTheme {
-        TileGrid(GameLogic().gameTiles)
+        TileGrid(GameLogic.gameTiles)
     }
 }
