@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +36,9 @@ import com.alexaksonov.fifteen_kotlin.domain.GameLogic
 import com.alexaksonov.fifteen_kotlin.domain.Utils
 import com.alexaksonov.fifteen_kotlin.ui.theme.AppColors
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
+import com.alexaksonov.fifteen_kotlin.ui.widgets.IndicatorColumn
 import com.alexaksonov.fifteen_kotlin.ui.widgets.Tile
+import com.alexaksonov.fifteen_kotlin.ui.widgets.TileGrid
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,54 +58,27 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(modifier: Modifier = Modifier) {
 
     Column(
-        Modifier
+        modifier
             .fillMaxSize()
-            .padding(top = 64.dp)
             .background(color = Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text("Fifteen", style = TextStyle(
-            color = AppColors.Chocolate,
-            fontSize = 24.sp,
-        ))
+        Text(
+            "Fifteen",
+            style = TextStyle(
+                color = AppColors.Chocolate,
+                fontSize = 24.sp,
+            ),
+            modifier = Modifier.padding(top = 64.dp)
+        )
 
-        Spacer(Modifier.height(32.dp))
+        TileGrid(
+            GameLogic.gameTiles.value,
+            modifier = Modifier.padding(vertical = 32.dp)
+        )
 
-        TileGrid(GameLogic.gameTiles.value)
-
-        Spacer(Modifier.height(32.dp))
-
-        Row(verticalAlignment = Alignment.CenterVertically) {
-
-            IconButton(
-                onClick = { GameLogic.onGridReset() },
-                modifier = Modifier
-                    .size(70.dp)
-                    .background(AppColors.Silver, RoundedCornerShape(12.dp)) // Silver background with circular shape
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Refresh,
-                    contentDescription = "Refresh Icon",
-                    tint = Color.White
-                )
-            }
-
-            Spacer(Modifier.width(48.dp))
-
-            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceBetween) {
-                Text(
-                    "Moves",
-                    style = TextStyle(fontWeight = FontWeight.W500, fontSize = 16.sp),
-                )
-
-                Text(
-                    GameLogic.movesCount.intValue.toString(),
-                    style = TextStyle(fontWeight = FontWeight.W500, fontSize = 32.sp),
-                )
-            }
-
-        }
+        UtilityRow()
 
 
     }
@@ -118,40 +94,29 @@ fun MainScreenPreview() {
 }
 
 @Composable
-fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
+fun UtilityRow(modifier: Modifier = Modifier) {
 
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+    Row(verticalAlignment = Alignment.CenterVertically) {
+
+        IconButton(
+            onClick = { GameLogic.onGridReset() },
+            modifier = Modifier
+                .size(70.dp)
+                .background(AppColors.Silver, RoundedCornerShape(12.dp)) // Silver background with circular shape
         ) {
-
-        Column {
-            repeat(GameLogic.GRID_SIZE) { colIndex ->
-                Row {
-                    repeat(GameLogic.GRID_SIZE) { rowIndex ->
-
-                        val index = Utils.getIndex(rowIndex, colIndex)
-                        val textInt = tiles[index]
-                        Tile(
-                            Utils.getTextFromIndex(textInt),
-                            isEmpty = textInt == GameLogic.EMPTY_INDEX,
-                            onClick = {
-                                GameLogic.onTileClick(index)
-                            }
-                        )
-                    }
-                }
-            }
+            Icon(
+                imageVector = Icons.Filled.Refresh,
+                contentDescription = "Refresh Icon",
+                tint = Color.White
+            )
         }
-    }
 
-}
+        Spacer(Modifier.width(48.dp))
 
-@Preview(showBackground = false)
-@Composable
-fun GridPreview() {
-    FifteenKotlinTheme {
-        TileGrid(GameLogic.gameTiles.value)
+        IndicatorColumn(
+            title = "Moves",
+            value = GameLogic.movesCount.intValue.toString(),
+        )
+
     }
 }
