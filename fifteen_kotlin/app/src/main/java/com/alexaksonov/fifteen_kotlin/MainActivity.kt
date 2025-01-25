@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.alexaksonov.fifteen_kotlin.domain.GameLogic
 import com.alexaksonov.fifteen_kotlin.domain.Utils
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
+import com.alexaksonov.fifteen_kotlin.ui.widgets.Tile
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,29 +70,5 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 fun GridPreview() {
     FifteenKotlinTheme {
         TileGrid(GameLogic().gameTiles)
-    }
-}
-
-
-@Composable
-fun Tile(tileLabel: String, modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .padding(4.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
-            .width(50.dp)
-            .height(50.dp),
-    ) {
-        Text(tileLabel)
-    }
-}
-
-@Preview(showBackground = false)
-@Composable
-fun TilePreview() {
-    FifteenKotlinTheme {
-        Tile("12")
     }
 }
