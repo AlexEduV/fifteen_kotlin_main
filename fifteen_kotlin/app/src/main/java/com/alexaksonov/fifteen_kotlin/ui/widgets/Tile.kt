@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alexaksonov.fifteen_kotlin.ui.theme.AppColors
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
+import com.alexaksonov.fifteen_kotlin.ui.theme.poppinsFontFamily
 
 @Composable
 fun Tile(
@@ -51,6 +52,7 @@ fun Tile(
                     fontSize = 32.sp,
                     color = Color.White,
                     fontWeight = FontWeight.W600,
+                    fontFamily = poppinsFontFamily,
                 )
             )
         }

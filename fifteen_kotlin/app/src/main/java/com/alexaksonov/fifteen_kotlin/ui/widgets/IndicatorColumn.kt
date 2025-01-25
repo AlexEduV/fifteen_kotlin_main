@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
+import com.alexaksonov.fifteen_kotlin.ui.theme.poppinsFontFamily
 
 @Composable
 fun IndicatorColumn(modifier: Modifier = Modifier, title: String, value: String) {
@@ -18,12 +19,20 @@ fun IndicatorColumn(modifier: Modifier = Modifier, title: String, value: String)
     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceBetween) {
         Text(
             title,
-            style = TextStyle(fontWeight = FontWeight.W500, fontSize = 16.sp),
+            style = TextStyle(
+                fontWeight = FontWeight.W500,
+                fontSize = 16.sp,
+                fontFamily = poppinsFontFamily,
+                ),
         )
 
         Text(
             value,
-            style = TextStyle(fontWeight = FontWeight.W500, fontSize = 32.sp),
+            style = TextStyle(
+                fontWeight = FontWeight.W500,
+                fontSize = 32.sp,
+                fontFamily = poppinsFontFamily,
+                ),
         )
     }
 }

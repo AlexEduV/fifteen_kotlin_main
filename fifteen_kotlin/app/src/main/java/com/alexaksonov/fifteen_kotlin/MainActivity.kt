@@ -31,8 +31,10 @@ import androidx.compose.ui.unit.sp
 import com.alexaksonov.fifteen_kotlin.domain.GameLogic
 import com.alexaksonov.fifteen_kotlin.ui.theme.AppColors
 import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
+import com.alexaksonov.fifteen_kotlin.ui.theme.poppinsFontFamily
 import com.alexaksonov.fifteen_kotlin.ui.widgets.IndicatorColumn
 import com.alexaksonov.fifteen_kotlin.ui.widgets.TileGrid
+import com.alexaksonov.fifteen_kotlin.ui.widgets.UtilityRow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +65,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             style = TextStyle(
                 color = AppColors.Night,
                 fontSize = 24.sp,
+                fontFamily = poppinsFontFamily
             ),
             modifier = Modifier.padding(top = 64.dp)
         )
@@ -87,30 +90,3 @@ fun MainScreenPreview() {
     }
 }
 
-@Composable
-fun UtilityRow(modifier: Modifier = Modifier) {
-
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
-
-        IconButton(
-            onClick = { GameLogic.onGridReset() },
-            modifier = Modifier
-                .size(70.dp)
-                .background(AppColors.Night, RoundedCornerShape(12.dp)) // Silver background with circular shape
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Refresh,
-                contentDescription = "Refresh Icon",
-                tint = Color.White
-            )
-        }
-
-        Spacer(Modifier.width(48.dp))
-
-        IndicatorColumn(
-            title = stringResource(R.string.moves),
-            value = GameLogic.movesCount.intValue.toString(),
-        )
-
-    }
-}
