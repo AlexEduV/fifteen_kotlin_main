@@ -2,4 +2,5 @@
     <string name="app_name" translatable="false">Fifteen Kotlin</string>
     <string name="main_screen_title">15 Puzzle</string>
     <string name="moves">Moves</string>
+    <string name="win_phrase">You won!</string>
 </resources>

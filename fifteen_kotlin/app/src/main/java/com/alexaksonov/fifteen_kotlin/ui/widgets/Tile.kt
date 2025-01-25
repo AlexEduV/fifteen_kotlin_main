@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -37,8 +38,9 @@ fun Tile(
             .padding(4.dp)
             .clip(RoundedCornerShape(12.dp))
             .border(1.dp, Color.White, RoundedCornerShape(12.dp))
-            .size(80.dp),
-        shadowElevation = 4.dp,
+            .size(80.dp)
+            .shadow(2.dp, shape = RoundedCornerShape(12.dp), ambientColor = backgroundColor.copy(alpha = 0.5f), spotColor = backgroundColor.copy(alpha = 0.5f)), // Adding custom shadow
+        shadowElevation = 12.dp,
         color = backgroundColor,
         onClick = { onClick() }
     ) {

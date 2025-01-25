@@ -13,6 +13,7 @@ class GameLogic {
 
         var gameTiles = mutableStateOf(generateTiles())
         var movesCount = mutableIntStateOf(0)
+        var isWon = mutableStateOf(false)
 
         //generate a new sequence
         private fun generateTiles(): List<Int> {
@@ -56,6 +57,8 @@ class GameLogic {
                 movesCount.intValue++
                 gameTiles.value = tiles.toList()
 
+                isWon.value = isGameComplete(tiles)
+
                 return true // Swap was successful
             }
             return false // No swap, as the clicked tile isn't a neighbor
@@ -64,6 +67,7 @@ class GameLogic {
         fun onGridReset() {
             gameTiles.value = generateTiles()
             movesCount.intValue = 0
+            isWon.value = false
         }
 
         // Check if two tiles are neighbors in the 4x4 grid

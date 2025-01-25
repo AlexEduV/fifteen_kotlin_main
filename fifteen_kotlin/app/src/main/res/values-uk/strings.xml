@@ -2,4 +2,5 @@
 <resources>
     <string name="main_screen_title">П\'ятнашки</string>
     <string name="moves">Кроки</string>
+    <string name="win_phrase">Ви Виграли</string>
 </resources>

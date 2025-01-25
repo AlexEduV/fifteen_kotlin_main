@@ -5,10 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,6 +40,7 @@ import com.alexaksonov.fifteen_kotlin.ui.theme.poppinsFontFamily
 import com.alexaksonov.fifteen_kotlin.ui.widgets.IndicatorColumn
 import com.alexaksonov.fifteen_kotlin.ui.widgets.TileGrid
 import com.alexaksonov.fifteen_kotlin.ui.widgets.UtilityRow
+import com.alexaksonov.fifteen_kotlin.ui.widgets.WinScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +49,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FifteenKotlinTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(modifier = Modifier.padding(innerPadding))
+                    MainScreen(modifier = Modifier.padding(innerPadding), isWon = GameLogic.isWon.value)
                 }
             }
         }
@@ -51,31 +57,37 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, isWon: Boolean) {
 
-    Column(
-        modifier
-            .fillMaxSize()
-            .background(color = Color.White),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Box {
+        Column(
+            modifier
+                .fillMaxSize()
+                .background(color = Color.White),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-        Text(
-            stringResource(R.string.main_screen_title),
-            style = TextStyle(
-                color = AppColors.Night,
-                fontSize = 24.sp,
-                fontFamily = poppinsFontFamily
-            ),
-            modifier = Modifier.padding(top = 64.dp)
-        )
+            Text(
+                stringResource(R.string.main_screen_title),
+                style = TextStyle(
+                    color = AppColors.Night,
+                    fontSize = 24.sp,
+                    fontFamily = poppinsFontFamily
+                ),
+                modifier = Modifier.padding(top = 64.dp)
+            )
 
-        TileGrid(
-            GameLogic.gameTiles.value,
-            modifier = Modifier.padding(vertical = 32.dp)
-        )
+            TileGrid(
+                GameLogic.gameTiles.value,
+                modifier = Modifier.padding(vertical = 32.dp)
+            )
 
-        UtilityRow()
+            UtilityRow()
+
+
+        }
+
+        if (isWon) WinScreen()
 
 
     }
@@ -86,7 +98,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
 @Composable
 fun MainScreenPreview() {
     FifteenKotlinTheme {
-        MainScreen()
+        MainScreen(isWon = true)
     }
 }
 
