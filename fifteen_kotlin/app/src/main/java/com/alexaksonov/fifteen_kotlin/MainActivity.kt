@@ -60,7 +60,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
         Text(
             "Fifteen",
             style = TextStyle(
-                color = AppColors.Chocolate,
+                color = AppColors.Night,
                 fontSize = 24.sp,
             ),
             modifier = Modifier.padding(top = 64.dp)
@@ -95,7 +95,7 @@ fun UtilityRow(modifier: Modifier = Modifier) {
             onClick = { GameLogic.onGridReset() },
             modifier = Modifier
                 .size(70.dp)
-                .background(AppColors.Silver, RoundedCornerShape(12.dp)) // Silver background with circular shape
+                .background(AppColors.Night, RoundedCornerShape(12.dp)) // Silver background with circular shape
         ) {
             Icon(
                 imageVector = Icons.Filled.Refresh,

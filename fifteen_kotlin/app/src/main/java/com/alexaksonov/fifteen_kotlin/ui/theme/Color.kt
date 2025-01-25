@@ -14,7 +14,10 @@ class AppColors {
         val Pink40 = Color(0xFF7D5260)
 
         val Silver = Color(0xFFC0C0C0)
-        val Chocolate = Color(0xFF3E1C1C)
-        val OffWhite = Color(0xFFF8F8FF)
+        val Chocolate = Color(0xFF8f5c38)
+        val OffBlue = Color(0xFF456990)
+        val Night = Color(0xFF171614)
+
+        val Viridian = Color(0xFF2A7F62)
     }
 }

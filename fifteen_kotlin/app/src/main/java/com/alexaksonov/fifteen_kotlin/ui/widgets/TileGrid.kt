@@ -29,7 +29,8 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                         val index = Utils.getIndex(rowIndex, colIndex)
                         val textInt = tiles[index]
                         Tile(
-                            Utils.getTextFromIndex(textInt),
+                            tileLabel = Utils.getTextFromIndex(textInt),
+                            backgroundColor = Utils.getTileColor(textInt),
                             isEmpty = textInt == GameLogic.EMPTY_INDEX,
                             onClick = {
                                 GameLogic.onTileClick(index)

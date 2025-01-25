@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,16 +24,15 @@ import com.alexaksonov.fifteen_kotlin.ui.theme.FifteenKotlinTheme
 @Composable
 fun Tile(
     tileLabel: String,
+    backgroundColor: Color,
     modifier: Modifier = Modifier,
     isEmpty: Boolean = false,
     onClick: () -> Boolean,
 ) {
 
-    val backgroundColor = if (isEmpty) AppColors.Silver else AppColors.Chocolate
-
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .padding(4.dp)
             .clip(RoundedCornerShape(12.dp))
             .border(1.dp, AppColors.Silver, RoundedCornerShape(12.dp))
@@ -56,6 +56,6 @@ fun Tile(
 @Composable
 fun TilePreview() {
     FifteenKotlinTheme {
-        Tile("12", onClick = { true })
+        Tile("12", onClick = { true }, backgroundColor = AppColors.Chocolate)
     }
 }
