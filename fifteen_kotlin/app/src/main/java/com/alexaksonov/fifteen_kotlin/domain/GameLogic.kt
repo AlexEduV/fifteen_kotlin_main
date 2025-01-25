@@ -6,6 +6,9 @@ class GameLogic {
         const val EMPTY_INDEX = 16
         private val initTiles = (1..16).toMutableList()
 
+        var gameTiles = generateTiles(initTiles)
+        var movesCount = 0
+
         //generate a new sequence
         private fun generateTiles(initTiles: MutableList<Int>): MutableList<Int> {
             val tiles = initTiles
@@ -15,8 +18,6 @@ class GameLogic {
 
             return tiles
         }
-
-        var gameTiles = generateTiles(initTiles)
 
         // Check if the arrangement is solvable
         private fun isSolvable(tiles: List<Int>): Boolean {
@@ -44,6 +45,10 @@ class GameLogic {
                 // Swap the clicked tile with the blank tile
                 tiles[blankIndex] = tiles[clickedIndex]
                 tiles[clickedIndex] = EMPTY_INDEX
+
+                //update moves counter
+                movesCount++
+
                 return true // Swap was successful
             }
             return false // No swap, as the clicked tile isn't a neighbor

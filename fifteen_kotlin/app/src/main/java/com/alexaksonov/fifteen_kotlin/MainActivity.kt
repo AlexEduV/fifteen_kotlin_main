@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
@@ -27,7 +25,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -100,7 +97,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    "0",
+                    GameLogic.movesCount.toString(),
                     style = TextStyle(fontWeight = FontWeight.W500, fontSize = 32.sp),
                 )
             }
@@ -135,7 +132,11 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                     repeat(4) { rowIndex ->
 
                         val textInt = tiles[Utils.getIndex(col = colIndex, row = rowIndex)]
-                        Tile(Utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic.EMPTY_INDEX)
+                        Tile(
+                            Utils.getTextFromIndex(textInt),
+                            isEmpty = textInt == GameLogic.EMPTY_INDEX,
+                            onClick = { GameLogic.onTileClick(GameLogic.gameTiles, Utils.getIndex(colIndex, rowIndex)) }
+                        )
                     }
                 }
             }
