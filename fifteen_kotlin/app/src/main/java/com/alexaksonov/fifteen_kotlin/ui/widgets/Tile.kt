@@ -28,7 +28,6 @@ fun Tile(
     tileLabel: String,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
-    isEmpty: Boolean = false,
     onClick: () -> Boolean,
 ) {
 
@@ -38,7 +37,7 @@ fun Tile(
             .clip(RoundedCornerShape(12.dp))
             .border(1.dp, Color.White, RoundedCornerShape(12.dp))
             .size(80.dp),
-        shadowElevation = 16.dp,
+        shadowElevation = 4.dp,
         color = backgroundColor,
         onClick = { onClick() }
     ) {

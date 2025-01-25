@@ -31,7 +31,6 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                         Tile(
                             tileLabel = Utils.getTextFromIndex(textInt),
                             backgroundColor = Utils.getTileColor(textInt),
-                            isEmpty = textInt == GameLogic.EMPTY_INDEX,
                             onClick = {
                                 GameLogic.onTileClick(index)
                             }
