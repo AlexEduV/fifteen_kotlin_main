@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Fifteen Kotlin</string>
+    <string name="app_name" translatable="false">Fifteen Kotlin</string>
+    <string name="main_screen_title">Fifteen</string>
+    <string name="moves">Moves</string>
 </resources>

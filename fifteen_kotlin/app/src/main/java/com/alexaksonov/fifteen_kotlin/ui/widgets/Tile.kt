@@ -36,7 +36,7 @@ fun Tile(
         modifier = modifier
             .padding(4.dp)
             .clip(RoundedCornerShape(12.dp))
-            .border(1.dp, AppColors.Silver, RoundedCornerShape(12.dp))
+            .border(1.dp, Color.White, RoundedCornerShape(12.dp))
             .size(80.dp),
         shadowElevation = 16.dp,
         color = backgroundColor,
@@ -50,7 +50,7 @@ fun Tile(
                 tileLabel,
                 style = TextStyle(
                     fontSize = 32.sp,
-                    color = AppColors.Silver,
+                    color = Color.White,
                     fontWeight = FontWeight.W600,
                 )
             )
