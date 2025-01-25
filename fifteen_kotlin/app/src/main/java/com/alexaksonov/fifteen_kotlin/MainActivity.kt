@@ -76,7 +76,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
         Row(verticalAlignment = Alignment.CenterVertically) {
 
             IconButton(
-                onClick = { },
+                onClick = { GameLogic.onGridReset() },
                 modifier = Modifier
                     .size(70.dp)
                     .background(AppColors.Silver, RoundedCornerShape(12.dp)) // Silver background with circular shape
@@ -127,15 +127,20 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
         ) {
 
         Column {
-            repeat(4) { colIndex ->
+            repeat(GameLogic.GRID_SIZE) { colIndex ->
                 Row {
-                    repeat(4) { rowIndex ->
+                    repeat(GameLogic.GRID_SIZE) { rowIndex ->
 
                         val textInt = tiles[Utils.getIndex(col = colIndex, row = rowIndex)]
                         Tile(
                             Utils.getTextFromIndex(textInt),
                             isEmpty = textInt == GameLogic.EMPTY_INDEX,
-                            onClick = { GameLogic.onTileClick(GameLogic.gameTiles, Utils.getIndex(colIndex, rowIndex)) }
+                            onClick = {
+                                GameLogic.onTileClick(
+                                    GameLogic.gameTiles,
+                                    Utils.getIndex(colIndex, rowIndex)
+                                )
+                            }
                         )
                     }
                 }

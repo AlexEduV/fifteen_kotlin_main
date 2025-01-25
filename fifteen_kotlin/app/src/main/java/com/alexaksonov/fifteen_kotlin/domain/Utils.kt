@@ -4,9 +4,7 @@ class Utils {
 
     companion object {
 
-        private val DIM = 4
-
-        fun getIndex(row: Int, col: Int) = row * DIM + col
+        fun getIndex(row: Int, col: Int) = row * GameLogic.GRID_SIZE + col
 
         fun getTextFromIndex(index: Int): String {
 

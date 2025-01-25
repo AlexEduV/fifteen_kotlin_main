@@ -3,6 +3,7 @@ package com.alexaksonov.fifteen_kotlin.domain
 class GameLogic {
 
     companion object {
+        const val GRID_SIZE = 4
         const val EMPTY_INDEX = 16
         private val initTiles = (1..16).toMutableList()
 
