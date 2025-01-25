@@ -2,20 +2,23 @@ package com.alexaksonov.fifteen_kotlin.domain
 
 class Utils {
 
-    private val DIM = 4
+    companion object {
 
-    fun getIndex(row: Int, col: Int) = row * DIM + col
+        private val DIM = 4
 
-    fun getTextFromIndex(index: Int): String {
+        fun getIndex(row: Int, col: Int) = row * DIM + col
 
-        val text = if (index == GameLogic().emptyIndex) {
-            ""
-        } else {
-            index.toString()
+        fun getTextFromIndex(index: Int): String {
+
+            val text = if (index == GameLogic.EMPTY_INDEX) {
+                ""
+            } else {
+                index.toString()
+            }
+
+            return text
+
         }
-
-        return text
-
     }
 
 }

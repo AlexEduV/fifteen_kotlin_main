@@ -123,8 +123,6 @@ fun MainScreenPreview() {
 @Composable
 fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
 
-    val utils = Utils()
-
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -136,8 +134,8 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                 Row {
                     repeat(4) { rowIndex ->
 
-                        val textInt = tiles[utils.getIndex(col = colIndex, row = rowIndex)]
-                        Tile(utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic.EMPTY_INDEX)
+                        val textInt = tiles[Utils.getIndex(col = colIndex, row = rowIndex)]
+                        Tile(Utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic.EMPTY_INDEX)
                     }
                 }
             }
