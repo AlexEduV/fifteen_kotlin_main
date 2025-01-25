@@ -49,7 +49,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
     Box(
         Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(top = 64.dp)
             .background(color = Color.White),
     ) {
 
@@ -85,7 +85,7 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                     repeat(4) { rowIndex ->
 
                         val textInt = tiles[utils.getIndex(col = colIndex, row = rowIndex)]
-                        Tile(utils.getTextFromIndex(textInt))
+                        Tile(utils.getTextFromIndex(textInt), isEmpty = textInt == GameLogic().emptyIndex)
                     }
                 }
             }
