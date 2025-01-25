@@ -2,6 +2,7 @@ package com.alexaksonov.fifteen_kotlin.domain
 
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import kotlin.math.absoluteValue
 
 class GameLogic {
 
@@ -52,7 +53,7 @@ class GameLogic {
 
                 //update moves counter
                 movesCount.intValue++
-                gameTiles.value = tiles
+                gameTiles.value = tiles.toList()
 
                 return true // Swap was successful
             }
@@ -65,15 +66,17 @@ class GameLogic {
         }
 
         // Check if two tiles are neighbors in the 4x4 grid
-        private fun isNeighbor(index1: Int, index2: Int): Boolean {
-            val row1 = index1 / 4
-            val col1 = index1 % 4
-            val row2 = index2 / 4
-            val col2 = index2 % 4
+        private fun isNeighbor(clickedIndex: Int, blankIndex: Int): Boolean {
+            val row1 = clickedIndex / GRID_SIZE
+            val col1 = clickedIndex % GRID_SIZE
+            val row2 = blankIndex / GRID_SIZE
+            val col2 = blankIndex % GRID_SIZE
 
             // Two tiles are neighbors if they are adjacent horizontally or vertically
-            return (row1 == row2 && kotlin.math.abs(col1 - col2) == 1) || // Horizontal neighbor
-                    (col1 == col2 && kotlin.math.abs(row1 - row2) == 1)    // Vertical neighbor
+            val isNeighbor = (row1 == row2 && (col1 - col2).absoluteValue == 1) ||
+                    (col1 == col2 && (row1 - row2).absoluteValue == 1)  // Vertical neighbor
+
+            return isNeighbor
         }
 
         // check the game state
