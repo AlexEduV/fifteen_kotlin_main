@@ -44,7 +44,8 @@ class GameLogic {
         }
 
         //on click, check the neighbouring tiles for empty, and swap current tile with empty
-        fun onTileClick(tiles: MutableList<Int>, clickedIndex: Int): Boolean {
+        fun onTileClick(clickedIndex: Int): Boolean {
+            val tiles = gameTiles.value.toMutableList()
             val blankIndex = tiles.indexOf(EMPTY_INDEX) // Find the blank tile (16)
             if (isNeighbor(clickedIndex, blankIndex)) {
                 // Swap the clicked tile with the blank tile

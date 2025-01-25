@@ -131,15 +131,13 @@ fun TileGrid(tiles: List<Int>, modifier: Modifier = Modifier) {
                 Row {
                     repeat(GameLogic.GRID_SIZE) { rowIndex ->
 
-                        val textInt = tiles[Utils.getIndex(col = colIndex, row = rowIndex)]
+                        val index = Utils.getIndex(rowIndex, colIndex)
+                        val textInt = tiles[index]
                         Tile(
                             Utils.getTextFromIndex(textInt),
                             isEmpty = textInt == GameLogic.EMPTY_INDEX,
                             onClick = {
-                                GameLogic.onTileClick(
-                                    GameLogic.gameTiles.value.toMutableList(),
-                                    Utils.getIndex(colIndex, rowIndex)
-                                )
+                                GameLogic.onTileClick(index)
                             }
                         )
                     }
