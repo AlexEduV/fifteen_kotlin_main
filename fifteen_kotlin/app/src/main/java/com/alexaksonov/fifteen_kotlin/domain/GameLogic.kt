@@ -2,12 +2,14 @@ package com.alexaksonov.fifteen_kotlin.domain
 
 class GameLogic {
 
-    val EMPTY = 16
-    val gameTiles = generateTiles()
+    private val emptyIndex = 16
+
+    private val initTiles = (1..16).toMutableList()
+    val gameTiles = generateTiles(initTiles)
 
     //generate a new sequence
-    private fun generateTiles(): MutableList<Int> {
-        val tiles = (1..16).toMutableList()
+    private fun generateTiles(initTiles: MutableList<Int>): MutableList<Int> {
+        val tiles = initTiles
         do {
             tiles.shuffle()
         } while (!isSolvable(tiles))
@@ -35,6 +37,27 @@ class GameLogic {
     }
 
     //on click, check the neighbouring tiles for empty, and swap current tile with empty
-    
+    fun onClick(tiles: MutableList<Int>, clickedIndex: Int): Boolean {
+        val blankIndex = tiles.indexOf(emptyIndex) // Find the blank tile (16)
+        if (isNeighbor(clickedIndex, blankIndex)) {
+            // Swap the clicked tile with the blank tile
+            tiles[blankIndex] = tiles[clickedIndex]
+            tiles[clickedIndex] = emptyIndex
+            return true // Swap was successful
+        }
+        return false // No swap, as the clicked tile isn't a neighbor
+    }
+
+    // Check if two tiles are neighbors in the 4x4 grid
+    private fun isNeighbor(index1: Int, index2: Int): Boolean {
+        val row1 = index1 / 4
+        val col1 = index1 % 4
+        val row2 = index2 / 4
+        val col2 = index2 % 4
+
+        // Two tiles are neighbors if they are adjacent horizontally or vertically
+        return (row1 == row2 && kotlin.math.abs(col1 - col2) == 1) || // Horizontal neighbor
+                (col1 == col2 && kotlin.math.abs(row1 - row2) == 1)    // Vertical neighbor
+    }
 
 }
