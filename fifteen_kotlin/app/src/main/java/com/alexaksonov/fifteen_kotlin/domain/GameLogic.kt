@@ -60,4 +60,10 @@ class GameLogic {
                 (col1 == col2 && kotlin.math.abs(row1 - row2) == 1)    // Vertical neighbor
     }
 
+    // check the game state
+    fun isGameComplete(tiles: MutableList<Int>): Boolean {
+        val correctOrder = initTiles
+        return tiles == correctOrder
+    }
+
 }
