@@ -11,13 +11,11 @@ class Utils {
 
         fun getTextFromIndex(index: Int): String {
 
-            val text = if (index == GameLogic.EMPTY_INDEX) {
-                ""
+            if (index == GameLogic.EMPTY_INDEX) {
+                return ""
             } else {
-                index.toString()
+                return index.toString()
             }
-
-            return text
 
         }
 

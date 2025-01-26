@@ -97,7 +97,7 @@ class GameLogic {
         }
 
         // check the game state
-        private fun isGameComplete(tiles: MutableList<Int>): Boolean {
+        fun isGameComplete(tiles: MutableList<Int>): Boolean {
             val correctOrder = initTiles
             return tiles == correctOrder
         }
