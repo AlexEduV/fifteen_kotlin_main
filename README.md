@@ -25,7 +25,7 @@ Rearrange the tiles into the following order:
 
 ## 📂 Project Structure
 
-'''
+'''bash
 fifteen-puzzle-compose/
 ├── app/
 │   ├── src/
