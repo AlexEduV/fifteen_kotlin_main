@@ -25,7 +25,6 @@ Rearrange the tiles into the following order:
 
 ## 📂 Project Structure
 
-'''bash
 fifteen-puzzle-compose/
 ├── app/
 │   ├── src/
@@ -38,6 +37,5 @@ fifteen-puzzle-compose/
 │   │   └── test/              # Unit tests
 ├── build.gradle
 └── settings.gradle
-'''
 
 
