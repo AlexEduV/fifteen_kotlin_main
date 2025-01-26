@@ -45,7 +45,7 @@ fun Tile(
             .size(80.dp)
             .shadow(elevation = 72.dp, clip = false)
             .graphicsLayer(
-                clip = false,
+                clip = true,
                 shape = RoundedCornerShape(12.dp),
                 shadowElevation = 24f, // Larger shadow
                 ambientShadowColor = Color.Black.copy(alpha = 0.5f), // Customize ambient shadow
